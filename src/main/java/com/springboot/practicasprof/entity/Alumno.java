@@ -6,9 +6,9 @@ import java.io.Serializable;
 @Entity
 //creo la tabla con el nombre alumno
 @Table(name="alumnos")
-public class Alumno implements Serializable {
+public class Alumno implements Serializable { // sirve  para especificar quetodo el estado de un objeto podrá ser escrito o enviado en la red
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // identity para que la primary key se de forma incremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // identity para que la primary key se de de forma incremental
     private long id;
     private int dni;
     private String nombre;

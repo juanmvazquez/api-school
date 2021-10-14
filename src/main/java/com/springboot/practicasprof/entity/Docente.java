@@ -9,7 +9,8 @@ import java.io.Serializable;
 public class Docente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
     private int dni;
     private String nombre;
     private String apellido;
@@ -25,11 +26,11 @@ public class Docente implements Serializable {
 
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

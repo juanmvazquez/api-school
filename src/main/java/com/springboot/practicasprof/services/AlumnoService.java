@@ -17,4 +17,22 @@ public class AlumnoService implements IAlumnoService {
     public List<Alumno> findAll() {
         return (List<Alumno>) alumnoDao.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Alumno findById(Long id) {
+        return alumnoDao.findById(id).orElse(null); //orElse, si no lo encuentra retorna un null
+    }
+
+    @Override
+    @Transactional
+    public Alumno save(Alumno alumno) {
+        return alumnoDao.save(alumno);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        alumnoDao.deleteById(id);
+    }
 }
