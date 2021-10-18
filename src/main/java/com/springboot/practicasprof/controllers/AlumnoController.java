@@ -5,9 +5,12 @@ import com.springboot.practicasprof.entity.Alumno;
 import com.springboot.practicasprof.services.IAlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 //    generamos la url/endpoint
@@ -26,9 +29,17 @@ public class AlumnoController {
 //    busqueda por ID
 //    @PathVariable, es cuando nos referimos a datos incluidos.
     @GetMapping("/alumnos/{id}")
-    public Alumno show(@PathVariable Long id){
-        return alumnoService.findById(id);
+    public ResponseEntity<?> show(@PathVariable Long id){
+        Alumno alumno = alumnoService.findById(id);
+
+        Map<String,Object> response = new HashMap<>();
+
+        if(alumno == null){
+            response.put("mensaje", "el alumno ID: ".concat(id.toString().concat("No existe en la base de datos")));
+        }
+        return new ResponseEntity<Alumno>(alumno,HttpStatus.OK);
     }
+
 //    Post:Crea
 //    @RequestBody envia al alumno en formato json asi spring lee los datos y lo mapea
     @PostMapping("/alumnos")
@@ -37,6 +48,7 @@ public class AlumnoController {
     public Alumno create(@RequestBody Alumno alumno){
         return alumnoService.save(alumno);
     }
+
 //    Put:Actualiza
     @PutMapping("/alumnos/{id}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -47,6 +59,8 @@ public class AlumnoController {
         alumnoActual.setApellido(alumno.getApellido());
         alumnoActual.setFecha_nac(alumno.getFecha_nac());
         alumnoActual.setSexo(alumno.getSexo());
+        alumnoActual.setCal_vac(alumno.getCal_Vac());
+        alumnoActual.setObra_social(alumno.getObra_social());
         alumnoActual.setAlergias(alumno.getAlergias());
         alumnoActual.setTelefono(alumno.getTelefono());
         alumnoActual.setEmail(alumnoActual.getEmail());
@@ -54,6 +68,7 @@ public class AlumnoController {
 
         return alumnoService.save(alumnoActual);
     }
+
 //    Delete:Borra
     @DeleteMapping("/alumnos/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -1,6 +1,10 @@
 package com.springboot.practicasprof.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 //creo la clase entidad
 @Entity
@@ -10,18 +14,30 @@ public class Docente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
+    @Column(nullable = false)
     private int dni;
+    @NotEmpty
+    @Column(nullable = false)
     private String nombre;
+    @NotEmpty
+    @Column(nullable = false)
     private String apellido;
+    @NotEmpty
+    @Column(nullable = false)
     private int fecha;
     private char sexo;
     private String direccion;
+    @NotEmpty
+    @Column(nullable = false)
     private int telefono;
     private String obraSocial;
     private String art;
     private String profesion;
     private int matricula;
+    @NotEmpty
+    @Column(nullable = false)
+    @Email
     private String email;
 
 

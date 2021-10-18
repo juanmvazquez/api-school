@@ -2,6 +2,7 @@ package com.springboot.practicasprof.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 //creo la clase entidad
@@ -13,14 +14,25 @@ public class Tutor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
+    @Column(nullable = false)
     private int dni1;
+    @NotEmpty
+    @Column(nullable = false)
     private String nombreApellido1;
+    @NotEmpty
+    @Column(nullable = false)
     private int telefono1;
     private String parentesto1;
 
+    @NotEmpty
+    @Column(nullable = false)
     private int dni2;
+    @NotEmpty
+    @Column(nullable = false)
     private String nombreApellido2;
+    @NotEmpty
+    @Column(nullable = false)
     private int telefono2;
     private String parentesto2;
 
